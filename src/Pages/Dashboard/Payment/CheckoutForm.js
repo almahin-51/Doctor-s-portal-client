@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
     const { user } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://fast-bastion-31197.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -85,7 +85,7 @@ const CheckoutForm = ({ appointment }) => {
                 last4: paymentMethod.card.last4
             }
 
-            const url = `http://localhost:5000/appointments/${_id}`
+            const url = `https://fast-bastion-31197.herokuapp.com/appointments/${_id}`
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -118,9 +118,9 @@ const CheckoutForm = ({ appointment }) => {
                         },
                     }}
                 />
-                {processing ? <CircularProgress /> : <button type="submit" disabled={!stripe || success}>
+                <button type="submit" disabled={!stripe || success}>
                     Pay ${price}
-                </button>}
+                </button>
             </form>
             {
                 error && <p style={{ color: 'red' }}>{error}</p>
